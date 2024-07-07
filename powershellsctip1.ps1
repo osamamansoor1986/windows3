@@ -1,6 +1,10 @@
-# Define the directory and file paths
-$directoryPath = "C:\jenkins working"
-$filePath = "$directoryPath\file1.txt"
+# Set environment variables
+$env:DIR_PATH = "C:\jenkins working"
+$env:FILE_PATH = "$env:DIR_PATH\file1.txt"
+
+# Define the directory and file paths using environment variables
+$directoryPath = $env:DIR_PATH
+$filePath = $env:FILE_PATH
 
 # Create the directory if it doesn't exist
 if (-Not (Test-Path -Path $directoryPath)) {
@@ -20,3 +24,4 @@ if (-Not (Test-Path -Path $filePath)) {
 
 # Optionally, add some content to the file
 Add-Content -Path $filePath -Value "This is file1.txt created by PowerShell script."
+
