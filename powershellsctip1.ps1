@@ -1,27 +1,20 @@
-# Set environment variables
-$env:DIR_PATH = "C:\jenkins2-working1"
-$env:FILE_PATH = "$env:DIR_PATH\file11.txt"
+# Define environment variables
+$destinationDir = "C:\temp1"
+$fileName = "output.txt" # Replace with your filename if it's set as an environment variable
 
-# Define the directory and file paths using environment variables
-$directoryPath = $env:DIR_PATH
-$filePath = $env:FILE_PATH
-
-# Create the directory if it doesn't exist
-if (-Not (Test-Path -Path $directoryPath)) {
-    New-Item -ItemType Directory -Path $directoryPath
-    Write-Output "Directory 'jenkins working' created at $directoryPath"
+# Create destination directory if it doesn't exist
+if (-Not (Test-Path -Path $destinationDir)) {
+    New-Item -Path $destinationDir -ItemType Directory
+    Write-Output "Directory '$destinationDir' created."
 } else {
-    Write-Output "Directory 'jenkins working' already exists at $directoryPath"
+    Write-Output "Directory '$destinationDir' already exists."
 }
 
-# Create the text file if it doesn't exist
-if (-Not (Test-Path -Path $filePath)) {
-    New-Item -ItemType File -Path $filePath
-    Write-Output "File 'file1.txt' created at $filePath"
-} else {
-    Write-Output "File 'file1.txt' already exists at $filePath"
-}
+# Define the file path
+$filePath = Join-Path -Path $destinationDir -ChildPath $fileName
 
-# Optionally, add some content to the file
-Add-Content -Path $filePath -Value "This is file1.txt created by PowerShell script."
+# Set content to the file using environment variable
+Set-Content -Path $filePath -Value $env:Message
+
+Write-Output "File '$filePath' created with content from the environment variable."
 
