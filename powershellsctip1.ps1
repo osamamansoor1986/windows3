@@ -1,6 +1,6 @@
 # Set environment variables
-$env:DIR_PATH = "C:\jenkins working"
-$env:FILE_PATH = "$env:DIR_PATH\file1.txt"
+$env:DIR_PATH = "C:\jenkins-working"
+$env:FILE_PATH = "$env:DIR_PATH\file11.txt"
 
 # Define the directory and file paths using environment variables
 $directoryPath = $env:DIR_PATH
